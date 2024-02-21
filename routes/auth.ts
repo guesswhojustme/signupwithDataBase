@@ -64,12 +64,22 @@ router.post(
         secret,
         {}
       );
-      res.cookie("token", token).json({
-        email: existingUser.email,
-        username: existingUser.username,
-        id: existingUser._id,
-        profilePic: existingUser.profilePic,
-      });
+
+      // Set the cookie to expire in   7 days
+      const expiresIn = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000); //   7 days in milliseconds
+      res
+        .cookie("token", token, {
+          expires: expiresIn,
+          sameSite: "none", // Allows the cookie to be sent with cross-site requests
+          secure: process.env.NODE_ENV === "production", // Only set the secure flag in production
+          httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
+        })
+        .json({
+          email: existingUser.email,
+          username: existingUser.username,
+          id: existingUser._id,
+          profilePic: existingUser.profilePic,
+        });
     } catch (error) {
       next(error);
     }

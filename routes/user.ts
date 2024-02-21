@@ -3,23 +3,12 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 import bcrypt from "bcryptjs";
-import multer from "multer";
 import userModel from "../models/user";
 import dotenv from "dotenv";
 import productModel from "../models/product";
 dotenv.config();
 
 const secret = process.env.SECRET;
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/profilePicture");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + file.originalname);
-  },
-});
-
-const upload = multer({ storage: storage });
 
 interface Request extends ExpressRequest {
   cookies: {
@@ -45,7 +34,7 @@ router.get("/user", async (req: Request, res: Response, next: NextFunction) => {
 
 router.put(
   "/updateProfile",
-  upload.single("image"),
+
   async (req: Request, res: Response, next: NextFunction) => {
     const { token } = req.cookies;
     const { email, password, username } = req.body;

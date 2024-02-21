@@ -87,6 +87,9 @@ router.post(
 );
 
 router.post("/logout", (req: Request, res: Response, next: NextFunction) => {
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  res.setHeader("Pragma", "no-cache");
+  res.setHeader("Expires", "0");
   // Set the cookie to expire in the past
   const expiresIn = new Date(0); // This sets the expiration date to the Unix epoch
   return res

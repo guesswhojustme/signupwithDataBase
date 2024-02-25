@@ -15,11 +15,11 @@ router.post(
     try {
       const existingEmail = await userModel.findOne({ email });
       if (existingEmail) {
-        return res.status(409).json("Email Already Exists");
+        return res.status(409).json({ error: "Email Already Exists" });
       }
       const existingUsername = await userModel.findOne({ username });
       if (existingUsername) {
-        return res.status(409).json("Username Already Exists");
+        return res.status(409).json({ error: "Username Already Exists" });
       }
 
       const newUser = new userModel({
@@ -29,7 +29,7 @@ router.post(
       });
 
       await newUser.save();
-      return res.status(200).json("success on creating user please wait");
+      return res.status(200).json({ message: "User created successfully" });
     } catch (error) {
       next(error);
     }

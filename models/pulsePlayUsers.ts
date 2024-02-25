@@ -5,10 +5,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, minLength: 4, unique: true },
   username: { type: String, required: true, minLength: 4, unique: true },
   password: { type: String, required: true, minLength: 4 },
-  favorites: [{ type: String }], // Array of strings
-  cart: [{ type: String }], // Array of strings
 });
 
-const userModel = mongoose.model("user", userSchema);
+const pulsePlayUserModel = mongoose.model("pulsePlayUser", userSchema);
 
-export default userModel;
+export default pulsePlayUserModel;

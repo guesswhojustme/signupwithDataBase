@@ -4,6 +4,7 @@ import express from "express";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { Request, Response, NextFunction } from "express";
+import pulsePlayUserModel from "../models/pulsePlayUsers";
 
 const router = express.Router();
 dotenv.config();
@@ -23,6 +24,33 @@ router.post(
       }
 
       const newUser = new userModel({
+        email,
+        username,
+        password: await bcrypt.hash(password, 10),
+      });
+
+      await newUser.save();
+      return res.status(200).json({ message: "User created successfully" });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+router.post(
+  "/signupPulsePlay",
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { email, username, password } = req.body;
+    try {
+      const existingEmail = await pulsePlayUserModel.findOne({ email });
+      if (existingEmail) {
+        return res.status(409).json({ error: "Email Already Exists" });
+      }
+      const existingUsername = await pulsePlayUserModel.findOne({ username });
+      if (existingUsername) {
+        return res.status(409).json({ error: "Username Already Exists" });
+      }
+
+      const newUser = new pulsePlayUserModel({
         email,
         username,
         password: await bcrypt.hash(password, 10),

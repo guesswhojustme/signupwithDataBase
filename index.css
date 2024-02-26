@@ -1,0 +1,97 @@
+.container{
+    background-color: darkcyan;
+    height: 100vh;
+}
+
+.spacer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 6cm;
+}
+
+.loginpart{
+    width: 500px;
+    height: 300px;
+    background-color: beige;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow:  0  4px  8px  0 rgba(0,0,0,0.5);;
+}
+
+.forms{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding-top: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.confirm-form{
+    padding-right: 60px;
+}
+
+input[type=email] {
+    padding:  10px;
+    border:  2px solid #ccc;
+    border-radius:  4px;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+input[type=email]:focus {
+    border:  3px solid #555;
+    background-color: #e8e8e8;
+    box-shadow:  0  4px  8px  0 rgba(0,0,0,0.2);;
+}
+
+input[type=password] {
+    padding:  10px;
+    border:  2px solid #ccc;
+    border-radius:  4px;
+    background-color: #f8f8f8;
+    color: #333;
+   
+}
+
+input[type=password]:focus {
+    border:  3px solid #555;
+    background-color: #e8e8e8;
+    box-shadow:  0  4px  8px  0 rgba(0,0,0,0.2);;
+}
+
+.emailform{
+    padding-left: 40px;
+}
+
+.signupdiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 20px;
+    padding-left: 50px;
+}
+
+
+.signupbtn{
+    border: none;
+    outline: 0;
+    display: inline-block;
+    color: black;
+    background-color: rgba(133, 244, 255);
+    text-align: center;
+    cursor: pointer;
+    width:  140px;
+    height: 50px;
+    font-size: 11px;
+    border-radius: 10px;
+   
+}
+.signupbtn:hover{
+    background-color: rgb(122, 221, 230);
+}
